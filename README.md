@@ -13,7 +13,9 @@ A fork of McAJBen's DungeonBoard that I have modified to suit my tastes and need
 
 #### Quality of Life Changes 
 * Refactored code to suit my prefrences 
-* Reworked UI with darker, flat theme>
+* Reworked UI with darker, flat theme
+* Images that are taller than they are wide are rotated to fit better in landscape
+
 ### Prerequisites
 
 Java
