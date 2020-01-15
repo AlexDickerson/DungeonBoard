@@ -1,4 +1,3 @@
-<#
 A fork of McAJBen's DungeonBoard that I have modified to suit my tastes and needs as a DM
 
 ### Changes Overview
@@ -32,5 +31,4 @@ VLC, for video playback
 ## Acknowledgments
 
 * Thanks to McAJBen for providing the framework here
->
-# 
+
