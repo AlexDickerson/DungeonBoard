@@ -14,8 +14,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.13</maven.compiler.source>
-    <maven.compiler.target>1.13</maven.compiler.target>
+    <maven.compiler.source>1.11</maven.compiler.source>
+    <maven.compiler.target>1.11</maven.compiler.target>
     <vlcjNatives.version>4.1.0</vlcjNatives.version>
     <vlcjOsxStubs.version>1.0.0</vlcjOsxStubs.version>
   </properties>
