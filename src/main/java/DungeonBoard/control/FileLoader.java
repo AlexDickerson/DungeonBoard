@@ -150,7 +150,6 @@ public class FileLoader {
 					final BufferedImage img = ImageIO.read(file);
 					String name = file.getName().replaceFirst("[.][^.]+$", "");;
 					Main.tokenList.addToken(img, name);
-					Main.addCharacter(name);
 				} catch (IOException | OutOfMemoryError error) {
 					Main.showError("Cannot load Image, file is probably too large", error);
 				}

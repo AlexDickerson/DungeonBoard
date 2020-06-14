@@ -24,7 +24,6 @@ public class StatusMenu {
                 newItem.addActionListener(new ActionListener() {
                     public void actionPerformed(final ActionEvent evt) {
                         Main.tokenList.copyToken(tokenIndex);
-                        Main.addCharacter(Main.tokenList.getToken(tokenIndex).getName());
                     }
                 });
             }

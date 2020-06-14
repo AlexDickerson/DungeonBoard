@@ -10,7 +10,6 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import DungeonBoard.main.Main;
 import DungeonBoard.main.Settings;
-import DungeonBoard.draw.DrawPanelWindowManager;
 
 class DrawPanelActionManager {
 

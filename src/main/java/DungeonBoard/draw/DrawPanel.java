@@ -13,7 +13,6 @@ import DungeonBoard.main.Settings;
 import DungeonBoard.main.Settings.Pen;
 import DungeonBoard.main.Settings.Direction;
 import DungeonBoard.main.Settings.DrawMode;
-import DungeonBoard.draw.DrawPanelActionManager;
 
 
 public class DrawPanel extends JComponent {

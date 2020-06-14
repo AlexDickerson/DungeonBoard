@@ -7,7 +7,6 @@ import java.util.Arrays;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import DungeonBoard.draw.DrawPanel;
-import DungeonBoard.control.FileLoader;
 
 public class ControlPaint extends JPanel {
 	

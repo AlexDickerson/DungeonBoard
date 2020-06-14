@@ -3,9 +3,6 @@ package DungeonBoard.main;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.IntelliJTheme;
 import com.formdev.flatlaf.json.ParseException;
-import DungeonBoard.main.DisplayVideoCombo;
-import DungeonBoard.main.Tokens;
-import DungeonBoard.main.DisplayWindows;
 import java.awt.Point;
 import java.io.IOException;
 import javax.swing.UIManager;
@@ -37,8 +34,6 @@ public class Main {
 		displayWindows.showError(message, error); }
 	public static void swapControlGMDisplay(){ 
 		displayStaticAndVideoWindow.swapControlGMDisplay();}
-	public static void addCharacter(String name){ 
-		displayStaticAndVideoWindow.addCharacter(name); }
 	public static void repaintDisplays(){ 
 		displayStaticAndVideoWindow.repaintDisplays(); }
 	public static void resetImages(){ 

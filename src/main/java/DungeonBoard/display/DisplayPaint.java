@@ -12,12 +12,6 @@ import javax.swing.JPanel;
 import DungeonBoard.main.Main;
 import DungeonBoard.main.Settings;
 import javax.imageio.ImageIO;
-import java.awt.Font;
-import java.awt.font.GlyphVector;
-import java.awt.font.FontRenderContext;
-import java.awt.geom.AffineTransform;
-import java.awt.Shape;
-import java.awt.geom.Ellipse2D;
 import java.awt.BasicStroke;
 
 public class DisplayPaint extends JPanel {
@@ -62,73 +56,9 @@ public class DisplayPaint extends JPanel {
 				final var token = Main.tokenList.getToken(i);
 				g2d.drawImage(token.getImage(), token.getXPos(), token.getYPos(), token.getWidth(), token.getHeight(), null);
 
-				paintLabels(g2d, i);
 				paintStatus(g2d, i);
 			} catch (final NullPointerException e) {
 			}
-		}
-	}
-
-	private void paintLabels(final Graphics2D g2d2, final int i) {
-		Graphics2D g2d = (Graphics2D) g2d2.create();
-		final var token = Main.tokenList.getToken(i);
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setFont(new Font("Helvetica", Font.BOLD, 18));
-
-		String name = token.getName();
-
-		FontRenderContext frc = g2d.getFontRenderContext();
-		g2d.translate(token.getXPos() + token.getWidth()/2, token.getYPos() + token.getHeight()/2);
-
-		Shape ellipse = getEllipseFromCenter(0, 0, token.getWidth()+30, token.getHeight()+30);
-		g2d.setStroke(new BasicStroke(30));
-		g2d.setColor(Settings.TEXT_BACKGROUND);
-		g2d.draw(ellipse);
-
-		Shape ellipse2 = getEllipseFromCenter(0, 0, token.getWidth()+50, token.getHeight()+50);
-		g2d.setStroke(new BasicStroke(2));
-		g2d.setColor(Settings.TEXT);
-		g2d.draw(ellipse2);
-
-		Shape ellipse3 = getEllipseFromCenter(0, 0, token.getWidth(), token.getHeight());
-		g2d.setStroke(new BasicStroke(2));
-		g2d.setColor(Settings.TEXT);
-		g2d.draw(ellipse3);
-
-		GlyphVector gv = g2d.getFont().createGlyphVector(frc, name);
-		int length = gv.getNumGlyphs();
-		for (int j = 0; j < length; j++) {
-			gv.setGlyphPosition(j, new Point(0,0));
-			AffineTransform at;
-			double degrees = 10;
-			int ellipseOffset = 15;
-			if(j < ((length-1)/2)){
-				double ePX = (token.getWidth()/2 + ellipseOffset) * Math.cos(Math.toRadians(-90 - (degrees * ((length/2 - j)))));
-				double ePY = (token.getHeight()/2 + ellipseOffset) * Math.sin(Math.toRadians(-90 - (degrees * ((length/2 - j)))));
-				var glyph = gv.getGlyphOutline(j);
-				at = AffineTransform.getTranslateInstance(ePX - glyph.getBounds2D().getWidth()/2,ePY + glyph.getBounds2D().getHeight()/2);
-				at.rotate(-Math.toRadians(degrees * (length/2 - j)), glyph.getBounds2D().getWidth()/2, -glyph.getBounds2D().getHeight()/2);
-			} else if(j == (length/2)){
-				double ePX = (token.getWidth()/2 + ellipseOffset) * Math.cos(Math.toRadians(-90));
-				double ePY = (token.getHeight()/2 + ellipseOffset) * Math.sin(Math.toRadians(-90));
-				var glyph = gv.getGlyphOutline(j);
-				at = AffineTransform.getTranslateInstance(ePX - glyph.getBounds2D().getWidth()/2,ePY + glyph.getBounds2D().getHeight()/2);
-			}
-			else{
-				double ePX = (token.getWidth()/2 + ellipseOffset) * Math.cos(Math.toRadians(-90 + ((j - length/2) * degrees)));
-				double ePY = (token.getHeight()/2 + ellipseOffset) * Math.sin(Math.toRadians(-90 + ((j - length/2) * degrees)));
-				var glyph = gv.getGlyphOutline(j);
-				at = AffineTransform.getTranslateInstance(ePX - glyph.getBounds2D().getWidth()/2,ePY + glyph.getBounds2D().getHeight()/2);
-				at.rotate(Math.toRadians(((j - length/2) * degrees)), glyph.getBounds2D().getWidth()/2, -glyph.getBounds2D().getHeight()/2);
-			}
-		
-			Shape glyph = gv.getGlyphOutline(j);
-			Shape transformedGlyph = at.createTransformedShape(glyph);
-			g2d.setColor(Color.WHITE);
-			g2d.fill(transformedGlyph);
-			//g2d.setColor(Color.BLACK);
-			//g2d.setStroke(new BasicStroke(1));
-			//g2d.draw(transformedGlyph);
 		}
 	}
 
@@ -137,19 +67,9 @@ public class DisplayPaint extends JPanel {
 		try {
 			if (!token.getName().isEmpty())
 				for (final String status : token.getStatusList()) 
-					g2d.drawImage(ImageIO.read(this.getClass().getResource("/" + status + ".png")), 
+					g2d.drawImage(ImageIO.read(this.getClass().getResource("/StatusIcons/" + status + ".png")), 
 						token.getXPos() + 10, token.getYPos() + 90, token.getWidth() - 15, token.getHeight() - 15, null);
 		} catch (final IOException e) { }
-	}
-
-	private Ellipse2D getEllipseFromCenter(double x, double y, double width, double height)
-	{
-		double newX = x - width / 2.0;
-		double newY = y - height / 2.0;
-
-		Ellipse2D ellipse = new Ellipse2D.Double(newX, newY, width, height);
-
-		return ellipse;
 	}
 
 	private void paintGrid(final Graphics2D g) {

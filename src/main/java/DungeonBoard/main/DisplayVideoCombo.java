@@ -1,6 +1,5 @@
 package DungeonBoard.main;
 
-import DungeonBoard.InitiativeTracker.InitiativePanel;
 import DungeonBoard.control.ControlPaint;
 import DungeonBoard.display.DisplayPaint;
 import DungeonBoard.display.DisplayVideo;
@@ -9,7 +8,6 @@ import java.awt.Point;
 public class DisplayVideoCombo {
     public DisplayVideoCombo(){
 		controlPanel = new ControlPaint();
-		initiativePanel = new InitiativePanel();
         playerDisplayPanel = new DisplayPaint("player");
         dungeonMasterDisplayPanel = new DisplayPaint("dm");
 		videoPlayerPanel = new DisplayVideo();
@@ -53,8 +51,6 @@ public class DisplayVideoCombo {
 
 	public void swapControlGMDisplay(){ controlPanel.swapPanels(dungeonMasterDisplayPanel); }
 
-	public void addCharacter(String name){ initiativePanel.addCharacter(name); }
-
 	public void playVideo(String path){
 		repaintDisplays();
 		videoPlayerPanel.playVideo(path);
@@ -64,5 +60,4 @@ public class DisplayVideoCombo {
     public DisplayPaint playerDisplayPanel;
 	public DisplayVideo videoPlayerPanel;
 	public ControlPaint controlPanel;
-	public InitiativePanel initiativePanel;
 }

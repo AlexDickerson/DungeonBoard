@@ -7,10 +7,8 @@ import java.awt.Rectangle;
 import javax.swing.JFrame;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
-import DungeonBoard.main.Settings;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import javax.swing.BorderFactory;
 
 public class DisplayWindows {
     public DisplayWindows(DisplayVideoCombo panels){
@@ -28,8 +26,6 @@ public class DisplayWindows {
 		
 		Settings.DISPLAY_SIZE = screens[displayIndex].getSize();
 		panels.controlPanel.setPreferredSize(new Dimension((int) Math.round(screens[0].getSize().width * 0.8), 1000));
-		panels.initiativePanel.setPreferredSize(new Dimension((int) Math.round(screens[0].getSize().width * 0.08), 1000));
-		panels.initiativePanel.setBorder(BorderFactory.createLineBorder(Settings.TEXT_BACKGROUND));
 		panels.controlPanel.setMinimumSize(new Dimension(300, 1000));
 
 		controlWindow = new ElementWindow("Control");
@@ -39,7 +35,6 @@ public class DisplayWindows {
         playerVideoWindow.setContentPane(panels.videoPlayerPanel);
 		playerDisplayWindow.add(panels.playerDisplayPanel);
 		controlWindow.add(panels.controlPanel, BorderLayout.CENTER);
-		controlWindow.add(panels.initiativePanel, BorderLayout.EAST);
 
 		synchronized (controlWindow) {
 			playerDisplayWindow.setVisible(true);

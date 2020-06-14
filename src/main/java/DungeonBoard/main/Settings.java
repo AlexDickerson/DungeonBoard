@@ -9,6 +9,8 @@ import javax.swing.Icon;
 
 public class Settings {
 
+	public String tokenDir;
+
 	public enum DrawMode { ANY, VISIBLE, INVISIBLE, WINDOW }
 
 	public enum Direction { NONE, VERTICAL, HORIZONTAL }
