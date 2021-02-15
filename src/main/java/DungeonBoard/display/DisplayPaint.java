@@ -78,7 +78,7 @@ public class DisplayPaint extends JPanel {
 
 		final int width = getSize().width;
 		final int height = getSize().height;
-		int dpi = 96;
+		int dpi = Settings.screenDPI;
 		final int rows = height/dpi;
 		final int cols = width/dpi;
 		for (int i = 1; i <= rows; i++)
@@ -123,7 +123,6 @@ public class DisplayPaint extends JPanel {
 				windowPos.y = (imageSize.height - getSize().height) / 2;
 			}
 		}
-		System.out.println(windowPos.x + " " + windowPos.y);
 		repaint();
 	}
 

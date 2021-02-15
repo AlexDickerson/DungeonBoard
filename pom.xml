@@ -36,6 +36,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+    <groupId>com.googlecode.json-simple</groupId>
+    <artifactId>json-simple</artifactId>
+    <version>1.1.1</version>
+</dependency>
+
+    <dependency>
       <groupId>org.javatuples</groupId>
       <artifactId>javatuples</artifactId>
       <version>1.2</version>
@@ -74,12 +80,12 @@
     <dependency>
     <groupId>org.jcodec</groupId>
     <artifactId>jcodec</artifactId>
-    <version>0.2.3</version>
+    <version>0.2.5</version>
     </dependency>
     <dependency>
         <groupId>org.jcodec</groupId>
         <artifactId>jcodec-javase</artifactId>
-        <version>0.2.3</version>
+        <version>0.2.5</version>
     </dependency>
   </dependencies>
 
@@ -95,11 +101,20 @@
           </manifest>
         </archive>
         <descriptorRefs>
-          <descriptorRef>jar-with-dependencies</descriptorRef>\
+          <descriptorRef>jar-with-dependencies</descriptorRef>
         </descriptorRefs>
         <finalName>DungeonBoard</finalName>
           <appendAssemblyId>false</appendAssemblyId>
       </configuration>
+      <executions>
+        <execution>
+          <id>make-assembly</id> <!-- this is used for inheritance merges -->
+          <phase>package</phase> <!-- bind to the packaging phase -->
+          <goals>
+            <goal>single</goal>
+          </goals>
+        </execution>
+      </executions>
     </plugin>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>

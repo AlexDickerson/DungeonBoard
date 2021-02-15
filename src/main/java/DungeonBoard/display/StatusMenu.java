@@ -16,7 +16,7 @@ public class StatusMenu {
 
         final ArrayList<JMenuItem> menuItemList = new ArrayList<>();
         final List<String> menuItems = Arrays.asList("Blinded", "Charmed", "Deafened", "Frightened", "Grappled", "Incapacitated", "Invisible","Paralyzed", "Poisoned",
-        "Prone", "Restrained", "Stunned", "Unconscious", "Copy");
+        "Prone", "Restrained", "Stunned", "Unconscious", "Copy", "Delete");
 
         for(String menuItem : menuItems){
             final JMenuItem newItem = new JMenuItem(menuItem);
@@ -24,6 +24,14 @@ public class StatusMenu {
                 newItem.addActionListener(new ActionListener() {
                     public void actionPerformed(final ActionEvent evt) {
                         Main.tokenList.copyToken(tokenIndex);
+                    }
+                });
+            }
+            else if(menuItem == "Delete"){
+                newItem.addActionListener(new ActionListener() {
+                    public void actionPerformed(final ActionEvent evt) {
+                        Main.tokenList.removeToken(tokenIndex);
+                        Main.repaintDisplays();
                     }
                 });
             }

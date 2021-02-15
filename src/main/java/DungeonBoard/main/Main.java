@@ -18,6 +18,7 @@ public class Main {
 			showError("Error - Changing look and feel", e);
 		}
 
+		test = new Settings();
 		tokenList = new Tokens();		
 		displayStaticAndVideoWindow = new DisplayVideoCombo();
 		displayWindows = new DisplayWindows(displayStaticAndVideoWindow);
@@ -47,5 +48,6 @@ public class Main {
 
 	private static DisplayVideoCombo displayStaticAndVideoWindow;
 	private static DisplayWindows displayWindows;
-	public static Tokens tokenList;		
+	public static Tokens tokenList;	
+	public static Settings test;
 }

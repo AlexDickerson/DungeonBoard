@@ -128,8 +128,10 @@ class ControlPanelButtons {
 			@Override
 			public void stateChanged(final ChangeEvent e) {
 				Settings.screenSize = (Integer) spinner.getValue();
+				Settings.screenDPI = (Integer) spinner.getValue();
 				if (Settings.displayGrid == 1)
 					updateButton.setEnabled(true);
+				Main.repaintDisplays();
 			}
 		});
 
@@ -147,10 +149,14 @@ class ControlPanelButtons {
 		innerNorthPanel.add(switchPanel);
 		innerNorthPanel.add(showButton);
 		innerNorthPanel.add(hideButton);
-		innerNorthPanel.add(tokenButton);
-		innerNorthPanel.add(showTokens);
+		if(Settings.enableTokens == 1){
+			innerNorthPanel.add(tokenButton);
+			innerNorthPanel.add(showTokens);
+		}
 		innerNorthPanel.add(gridButton);
-		innerNorthPanel.add(spinner);
+		if(Settings.adjustDPI == 1)
+			innerNorthPanel.add(spinner);
+		//innerNorthPanel.add(updateButton);
 
 		slider.setMinimumSize(new Dimension(200, 16));
 		slider.setVisible(false);

@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.FileDialog;
 import java.awt.Frame;
 import java.awt.image.BufferedImage;
+import java.awt.Image;
 import javax.imageio.ImageIO;
 import DungeonBoard.main.Main;
 import DungeonBoard.main.Settings;
@@ -53,13 +54,12 @@ public class FileLoader {
 		if (type == "map") {
 			final String filename = fd.getFile();
 			if (filename != null){
-				if (URLConnection.guessContentTypeFromName(fd.getFile()).startsWith("video")) {
+				if (URLConnection.guessContentTypeFromName(fd.getFile()).startsWith("video") || fd.getName().contains("webm")) {
 					final String path = fd.getDirectory() + fd.getFile();
 					BufferedImage frame = null;
-					
 					try{
 						frame = AWTUtil.toBufferedImage(FrameGrab.getFrameFromFile(new File(path), 1));
-						setFile(ImageIO.read(this.getClass().getResource("/clear.png")), frame);
+						setFile(ImageIO.read(this.getClass().getResource("/misc/clear.png")), frame);
 					} catch (IOException | JCodecException e) {
 						System.out.println(e.getMessage());
 					}
@@ -118,7 +118,7 @@ public class FileLoader {
 				try {
 					Settings.PAINT_IMAGE = null;
 					ImageIO.setUseCache(false);
-					Settings.PAINT_IMAGE = controlImage;
+					Settings.PAINT_IMAGE = resize(controlImage, Settings.DISPLAY_SIZE.width, Settings.DISPLAY_SIZE.height);
 					Main.setWindowPositions(new Point(0,0));
 					if (Settings.PAINT_IMAGE.getHeight() > Settings.PAINT_IMAGE.getWidth()) {
 						Settings.PAINT_IMAGE = rotateImage90Degrees(Settings.PAINT_IMAGE);
@@ -141,6 +141,17 @@ public class FileLoader {
 		};
 		fileLoadingThread.start();
 	}
+
+	public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
+		Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+		BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+	
+		Graphics2D g2d = dimg.createGraphics();
+		g2d.drawImage(tmp, 0, 0, null);
+		g2d.dispose();
+	
+		return dimg;
+	}  
 
 	void addFile(final File file) {
 		drawPanel.setImageLoading(true);

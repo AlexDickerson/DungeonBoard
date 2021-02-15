@@ -3,11 +3,31 @@ package DungeonBoard.main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.Icon;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
+import java.io.InputStreamReader;
 
 public class Settings {
+
+	public Settings() {
+		try {
+			InputStream in = this.getClass().getClassLoader().getResourceAsStream("settings.json");
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject)jsonParser.parse(new InputStreamReader(in, "UTF-8"));
+			System.out.println(jsonObject.get("screenDPI"));
+			screenDPI = Integer.parseInt(jsonObject.get("screenDPI").toString());
+			enableTokens = Integer.parseInt(jsonObject.get("enableTokens").toString());
+			adjustDPI = Integer.parseInt(jsonObject.get("adjustDPI").toString());
+		}
+		catch (Exception e){
+
+		}
+
+	}
 
 	public String tokenDir;
 
@@ -19,31 +39,37 @@ public class Settings {
 
 	public static int screenSize = 32;
 
+	public static int screenDPI;
+
+	public static int adjustDPI;
+
 	public static int displayGrid = 0;
 
 	public static int displayTokens = 0;
 	
+	public static int enableTokens;
+	
 	public static final String NAME = "Dungeon Board";
 
-	public static final ImageIcon ICON = load("icon.gif");
+	public static final ImageIcon ICON = load("misc/icon.gif");
 
 	public static final ImageIcon DRAW_STYLE[] = {
-			load("squigle.gif"),
-			load("vertical.gif"),
-			load("horizontal.gif")
+			load("misc/squigle.gif"),
+			load("misc/vertical.gif"),
+			load("misc/horizontal.gif")
 	};
 	
 	public static final ImageIcon DRAW_MODE[] = {
-			load("mouse.gif"),
-			load("visible.gif"),
-			load("invisible.gif"),
-			load("move.gif")
+			load("misc/mouse.gif"),
+			load("misc/visible.gif"),
+			load("misc/invisible.gif"),
+			load("misc/move.gif")
 	};
 	
 	public static final ImageIcon PEN_TYPE[] = {
-			load("circle.gif"),
-			load("square.gif"),
-			load("rect.gif")
+			load("misc/circle.gif"),
+			load("misc/square.gif"),
+			load("misc/rect.gif")
 	};
 
 	public static double maxZoom = 0;
@@ -84,7 +110,7 @@ public class Settings {
 	 * - higher number means the shadows will be more blocky<br>
 	 * - lower number means the shadows will be more fine, but will use more memory and CPU time
 	 */
-	public static final int PIXELS_PER_MASK = 3;
+	public static final int PIXELS_PER_MASK = 1;
 	
 	public static ImageIcon load(final String res) {
 		return new ImageIcon(ClassLoader.getSystemResource(res));

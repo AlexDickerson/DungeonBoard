@@ -110,6 +110,7 @@ public class DrawPanel extends JComponent {
 	@Override
 	protected void paintComponent(final Graphics g) {
 		final Graphics2D g2d = (Graphics2D) g;
+		var test = this.getHeight();
 		if (loading) {
 			g2d.drawString("Loading...", controlSize.width / 2, controlSize.height / 2);
 		} else if (Settings.PAINT_CONTROL_IMAGE != null) {
